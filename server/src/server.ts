@@ -2,9 +2,10 @@ import express from 'express';
 import {ApolloServer} from 'apollo-server-express';
 import {typeDefs} from'./schema';
 import {resolvers} from './resolvers';
+import * as g from './constants';
 
 const server = new ApolloServer({typeDefs, resolvers});
-const port = 8080 || process.env.PORT;
+const port = g.PORT || process.env.PORT;
 const app = express();
 server.applyMiddleware({app});
 
