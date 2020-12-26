@@ -24,6 +24,7 @@ import {
 
 import * as utils from './utils';
 import Test from './Test';
+import CandidatesList from './CandidatesList';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -64,6 +65,9 @@ const App = () => {
                 Read the docs to discover what to do next:
               </Text>
             </View> */}
+            <CandidatesList
+              serverUrl= {utils.getAndroidServerURL()}
+            />
             <Test 
               serverUrl= {utils.getAndroidServerURL()}
               data= "null"
