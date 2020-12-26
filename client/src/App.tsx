@@ -22,6 +22,7 @@ import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 
+import * as utils from './utils';
 import Test from './Test';
 
 declare const global: {HermesInternal: null | {}};
@@ -63,7 +64,10 @@ const App = () => {
                 Read the docs to discover what to do next:
               </Text>
             </View> */}
-            <Test data="null"/>
+            <Test 
+              serverUrl= {utils.getAndroidServerURL()}
+              data= "null"
+            />
           </View>
         </ScrollView>
       </SafeAreaView>

@@ -3,9 +3,20 @@ import mongoose from 'mongoose';
 import {ApolloServer} from 'apollo-server-express';
 import {typeDefs} from'./typeDefs';
 import {resolvers} from './resolvers';
-import * as g from './constants';
+import dotenv from 'dotenv';
+import path from 'path';
 
-const port = g.PORT || process.env.PORT;
+console.log(`__dirname = ${__dirname}`);
+
+const result = dotenv.config({
+    path: path.join(__dirname,'../', '.env.test'),
+})
+
+if (result.error) {
+    throw result.error
+}
+
+const port: Number = parseInt(`${process.env.SERVER_PORT}`, 10) || parseInt(`${process.env.PORT}`, 10) || 3000;
 
 const startServer = async () => {
     const app = express();
@@ -17,7 +28,7 @@ const startServer = async () => {
 
     server.applyMiddleware({app});
 
-    await mongoose.connect('mongodb://localhost/candidate-apollo-app', {
+    await mongoose.connect(process.env.DB_URI!, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true

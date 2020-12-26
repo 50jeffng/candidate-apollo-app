@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { View, Button, Text } from 'react-native';
-import * as g from './constants';
 
-const Test = (prop: {data: string}) => {
+const Test = (prop: {serverUrl: string, data: string}) => {
     const [data, setData] = useState(prop.data);
     const getData = () => {
-        return fetch(g.ANDROIDLOCALHOST + '/test')
+        return fetch(prop.serverUrl + '/test')
             .then((response) => response.json())
             .then((json) => {
                 return json.data;
