@@ -1,23 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Button, Text } from 'react-native';
 import CandidatesDisplay from './CandidatesDisplay';
-
-type Candidate = {
-    id: string, 
-    name: string, 
-    description: string, 
-    skills: Array<string>
-}
+import * as types from './types';
 
 const CandidatesList = (prop: {serverUrl: string}) => {
-    const [data, setData] = useState<Candidate[]>([]);
+    const [data, setData] = useState<types.Candidate[]>([]);
     const getData = () => {
         return fetch(prop.serverUrl + '/graphql?query={candidates{id,name,description,skills{name}}}')
             .then((response) => response.json())
             .then((json) => {
                 return json.data.candidates;
             })
-            .then(data => data.forEach((e:Candidate) => setData(prevState => [...prevState, e])))
+            .then(data => data.forEach((e:types.Candidate) => setData(prevState => [...prevState, e])))
             .catch((error) => {
                 console.error(error);
                 return error;
