@@ -5,11 +5,11 @@ import {
   View,
 } from 'react-native';
 
-import TilesList from './TilesList';
-
-
 import * as utils from './utils';
 import FilterSearchBar from './FilterSearchBar';
+import SkillsList from './SkillsList';
+
+
 const skillSearchFunc = ()=>{};
 
 const SkillsScreen = () => {
@@ -24,8 +24,10 @@ const SkillsScreen = () => {
                 style={styles.scrollView}
                 contentContainerStyle={styles.scrollViewContentContainer}>
                 <View style={styles.body}>
-                    <TilesList
-                    ></TilesList>
+                    <SkillsList
+                      serverUrl= {utils.getAndroidServerURL()}
+                      title="Skills"
+                    />
                 </View>
             </ScrollView>
         </View>

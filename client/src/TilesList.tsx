@@ -8,28 +8,31 @@ import {
 import { Tile } from 'react-native-elements';
 const widthDiv = 2.5;
 
-const baseTile = (width: number, title: string) => {
+const BaseTile = (props: {width: number, title: string}) => {
     return(
         <View style={styles.tiles}>
             <Tile
                 featured
                 imageSrc={require('../img/tileplaceholder.jpg')}
-                title={title}
-                width={width/widthDiv}/>
+                title={props.title}
+                width={props.width/widthDiv}/>
         </View>
     )
 }
 
-const TilesList = (props: {}) => {
+const TilesList = (props: {data:any[]}) => {
     const [width] = useState(Dimensions.get('window').width);
     return (
-        <View style={styles.container}>
+        <View style={styles.tileContainer}>
+            {props.data?.map(e => <BaseTile 
+                    width={width}
+                    title={e.name}/>)}
         </View>
     )
 };
 
 const styles = StyleSheet.create({
-    container: {
+    tileContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent:'space-evenly',

@@ -1,17 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
-import CandidatesDisplay from './CandidatesDisplay';
+import { StyleSheet, View, Text } from 'react-native';
+import { accessibilityProps } from 'react-native-paper/lib/typescript/components/MaterialCommunityIcon';
+import TilesList from './TilesList';
 import * as types from './types';
 
-const CandidatesList = (props: {serverUrl: string, title: string}) => {
-    const [data, setData] = useState<types.Candidate[]>([]);
+const SkillsList = (props: {serverUrl: string, title: string}) => {
+    const [data, setData] = useState<types.Skill[]>([]);
     const getData = () => {
-        return fetch(props.serverUrl + '/graphql?query={candidates{id,name,description,skills{name}}}')
+        return fetch(props.serverUrl + '/graphql?query={skills{id,name,description,type}}')
             .then((response) => response.json())
             .then((json) => {
-                return json.data.candidates;
+                return json.data.skills;
             })
-            .then(data => data.forEach((e:types.Candidate) => setData(prevState => [...prevState, e])))
+            .then(data => data.forEach((e:types.Skill) => setData(prevState => [...prevState, e])))
             .catch((error) => {
                 console.error(error);
                 return error;
@@ -26,10 +27,9 @@ const CandidatesList = (props: {serverUrl: string, title: string}) => {
         <View style={styles.list}>
             <View style={styles.listContent}>
                 <Text style={styles.listTitle}>{props.title}</Text>
-                {data?.map(candidate => <CandidatesDisplay 
-                    key = {candidate.id}
-                    {...candidate}
-                />)}
+                <TilesList
+                    data={data}
+                />
             </View>
         </View>
     );
@@ -51,4 +51,4 @@ const CandidatesList = (props: {serverUrl: string, title: string}) => {
     },
   });
   
-export default CandidatesList;
+export default SkillsList;

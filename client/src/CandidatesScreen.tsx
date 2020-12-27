@@ -26,6 +26,7 @@ const CandidatesScreen = () => {
                 <View style={styles.body}>
                     <CandidatesList
                         serverUrl= {utils.getAndroidServerURL()}
+                        title="Candidates"
                     />
                 </View>
             </ScrollView>
