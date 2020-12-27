@@ -2,16 +2,17 @@ import React from 'react';
 import {BottomNavigation} from 'react-native-paper';
 import {Icon} from 'react-native-elements'
 import {StyleSheet, Text, View} from 'react-native'
-import CandidateScreen from './CandidatesScreen';
+import CandidatesScreen from './CandidatesScreen';
+import SkillsScreen from './SkillsScreen';
 
 const HomeIcon = () => <Icon name='home' type='font-awesome'/>
 const HomeRoute = () => <Text>Music</Text>;
 
 const CandidatesIcon = () => <Icon name='users' type='font-awesome'/>
-const CandidatesRoute = CandidateScreen;
+const CandidatesRoute = CandidatesScreen;
 
 const SkillsIcon = () => <Icon name='lightbulb-o' type='font-awesome'/>
-const SkillsRoute = () => <Text>Recents</Text>;
+const SkillsRoute = SkillsScreen;
 
 const AboutIcon = () => <Icon name='info' type='font-awesome'/>
 const AboutRoute = () => <Text>test</Text>;
