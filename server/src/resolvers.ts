@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Query } from "mongoose";
 import { Candidate } from "./models/candidate";
 import { Skill } from "./models/skill";
 
@@ -6,9 +6,27 @@ import { Skill } from "./models/skill";
 export const resolvers = {
     Query: {
       candidates: async () => {return await Candidate.find();},
-      candidate: async (_: unknown, {id}: {id: string}) => {if(mongoose.Types.ObjectId.isValid(id)) return await Candidate.findById(id);},
+      candidate: async (_: unknown, {id}: {id: string}) => {
+        if(!mongoose.Types.ObjectId.isValid(id)) return null;
+        return await Candidate.findById(id, null, null, (err, doc) => {
+          if(err) {
+            console.error(err);
+            return null;
+          }
+          return doc;
+        });
+      },
       skills: async () => {return await Skill.find();},
-      skill: async (_: unknown, {id}: {id: string}) => {if(mongoose.Types.ObjectId.isValid(id)) return await Skill.findById(id);},
+      skill: async (_: unknown, {id}: {id: string}) => {
+        if(!mongoose.Types.ObjectId.isValid(id)) return null;
+        return await Skill.findById(id, null, null, (err, doc) => {
+          if(err) {
+            console.error(err);
+            return null;
+          }
+          return doc;
+        });
+      },
     },
 
     Mutation: {
@@ -18,8 +36,40 @@ export const resolvers = {
           const doc = await candidate.save();
           return doc;
         } catch(error) {
-          throw new Error(error.message);
+          throw new Error(error);
         }
-      }
+      },
+
+      addSkill: async (_: unknown, {name}: {name: string}) => {
+        const skill = new Skill({name});
+        try {
+          const doc = await skill.save();
+          return doc;
+        } catch(error) {
+          throw new Error(error);
+        }
+      },
+
+      deleteCandidate: async (_: unknown, {id}: {id: string}) => {
+        try {
+          const doc = await Candidate.findByIdAndDelete(id);
+          if(!doc) return false;
+          return true;
+        } catch(error) {
+          console.error(error);
+          return false;
+        }
+      },
+
+      deleteSkill: async (_: unknown, {id}: {id: string}) => {
+        try {
+          const doc = await Candidate.findByIdAndDelete(id);
+          if(!doc) return false;
+          return true;
+        } catch(error) {
+          console.error(error);
+          return false;
+        }
+      },
     }
   };
