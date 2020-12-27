@@ -1,4 +1,4 @@
-type Candidate = {
+export type Candidate = {
     id: string, 
     name: string, 
     description: string, 
