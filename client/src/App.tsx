@@ -18,6 +18,9 @@ import {
   StatusBar,
 } from 'react-native';
 
+import { ThemeProvider } from 'react-native-elements';
+import { useColorScheme } from 'react-native-appearance';
+
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
@@ -25,12 +28,15 @@ import {
 import * as utils from './utils';
 import Test from './Test';
 import CandidatesList from './CandidatesList';
+import CandidateSearchBar from './CandidateSearchBar';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
+  const colorScheme = useColorScheme();
   return (
-    <>
+    <ThemeProvider useDark={colorScheme === 'dark'}>
+      <CandidateSearchBar></CandidateSearchBar>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
@@ -75,7 +81,7 @@ const App = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </ThemeProvider>
   );
 };
 
