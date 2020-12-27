@@ -51,6 +51,7 @@ export const resolvers = {
       },
 
       deleteCandidate: async (_: unknown, {id}: {id: string}) => {
+        if(!mongoose.Types.ObjectId.isValid(id)) return false;
         try {
           const doc = await Candidate.findByIdAndDelete(id);
           if(!doc) return false;
@@ -62,8 +63,9 @@ export const resolvers = {
       },
 
       deleteSkill: async (_: unknown, {id}: {id: string}) => {
+        if(!mongoose.Types.ObjectId.isValid(id)) return false;
         try {
-          const doc = await Candidate.findByIdAndDelete(id);
+          const doc = await Skill.findByIdAndDelete(id);
           if(!doc) return false;
           return true;
         } catch(error) {
