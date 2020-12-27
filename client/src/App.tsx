@@ -26,9 +26,6 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import * as utils from './utils';
-import Test from './Test';
-import CandidatesList from './CandidatesList';
-import CandidateSearchBar from './CandidateSearchBar';
 import Navigation from './Navigation';
 
 declare const global: {HermesInternal: null | {}};

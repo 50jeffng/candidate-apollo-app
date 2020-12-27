@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -9,12 +8,17 @@ import {
 
 import * as utils from './utils';
 import CandidatesList from './CandidatesList';
-import CandidateSearchBar from './CandidateSearchBar';
+import FilterSearchBar from './FilterSearchBar';
 
-const App = () => {
+const candidateSearchFunc = ()=>{};
+
+const CandidatesScreen = () => {
   return (
         <View style={styles.screenContainter}>
-            <CandidateSearchBar></CandidateSearchBar>
+            <FilterSearchBar
+                placeholder="Search candidates..."
+                searchFunc={candidateSearchFunc}
+            />
             <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
                 style={styles.scrollView}
@@ -44,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default CandidatesScreen;
