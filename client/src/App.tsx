@@ -29,6 +29,7 @@ import * as utils from './utils';
 import Test from './Test';
 import CandidatesList from './CandidatesList';
 import CandidateSearchBar from './CandidateSearchBar';
+import Navigation from './Navigation';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -36,27 +37,9 @@ const App = () => {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider useDark={colorScheme === 'dark'}>
-      <CandidateSearchBar></CandidateSearchBar>
       {/* <StatusBar barStyle="dark-content" /> */}
       <SafeAreaView style={styles.container}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          {/* {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )} */}
-          <View style={styles.body}>
-            <CandidatesList
-              serverUrl= {utils.getAndroidServerURL()}
-            />
-            <Test 
-              serverUrl= {utils.getAndroidServerURL()}
-              data= "null"
-            />
-          </View>
-        </ScrollView>
+        <Navigation></Navigation>
       </SafeAreaView>
     </ThemeProvider>
   );
@@ -65,7 +48,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingTop:'5%',
+    // paddingTop:'5%',
   },
   scrollView: {
     backgroundColor: Colors.lighter,
