@@ -46,7 +46,6 @@ const CandidatesList = (prop: {serverUrl: string}) => {
         flexDirection:'column',
         flex:1,
         alignItems:'stretch',
-        paddingTop:'5%',
         paddingHorizontal:'3%',
     },
     listTitle:{
