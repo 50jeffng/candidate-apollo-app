@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Button, Text } from 'react-native';
+import Card from './Card';
 
 const CandidatesDisplay = (prop: {id: string, name: string, description: string, skills: Array<string>}) => {
     // const [candidate, setCandidate] = useState({});
@@ -12,10 +13,12 @@ const CandidatesDisplay = (prop: {id: string, name: string, description: string,
     });
     return (
         <View>
-            <Text>`Candidate`</Text>
-            <Text>`id: {prop.id}`</Text>
-            <Text>`name: {prop.name}`</Text>
-            <Text>`description: {prop.description}`</Text>
+            <Card>
+                <Text>`Candidate`</Text>
+                <Text>`id: {prop.id}`</Text>
+                <Text>`name: {prop.name}`</Text>
+                <Text>`description: {prop.description}`</Text>
+            </Card>
         </View>
     );
 };

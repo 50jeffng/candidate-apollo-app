@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Button, Text } from 'react-native';
+import { StyleSheet, View, Button, Text } from 'react-native';
 import CandidatesDisplay from './CandidatesDisplay';
 
 type Candidate = {
@@ -29,53 +29,32 @@ const CandidatesList = (prop: {serverUrl: string}) => {
         return () => setData([]);
     }, []);
     return (
-        <View>
-            <Text>Candidates!</Text>
-            {data?.map(candidate => <CandidatesDisplay 
-                key = {candidate.id}
-                {...candidate}
-            />)}
+        <View style={styles.list}>
+            <View style={styles.listContent}>
+                <Text style={styles.listTitle}>Candidates!</Text>
+                {data?.map(candidate => <CandidatesDisplay 
+                    key = {candidate.id}
+                    {...candidate}
+                />)}
+            </View>
         </View>
     );
 };
   
-//   const styles = StyleSheet.create({
-//     scrollView: {
-//       backgroundColor: Colors.lighter,
-//     },
-//     engine: {
-//       position: 'absolute',
-//       right: 0,
-//     },
-//     body: {
-//       backgroundColor: Colors.white,
-//     },
-//     sectionContainer: {
-//       marginTop: 32,
-//       paddingHorizontal: 24,
-//     },
-//     sectionTitle: {
-//       fontSize: 24,
-//       fontWeight: '600',
-//       color: Colors.black,
-//     },
-//     sectionDescription: {
-//       marginTop: 8,
-//       fontSize: 18,
-//       fontWeight: '400',
-//       color: Colors.dark,
-//     },
-//     highlight: {
-//       fontWeight: '700',
-//     },
-//     footer: {
-//       color: Colors.dark,
-//       fontSize: 12,
-//       fontWeight: '600',
-//       padding: 4,
-//       paddingRight: 12,
-//       textAlign: 'right',
-//     },
-//   });
+  const styles = StyleSheet.create({
+    list:{
+        flexDirection:'column',
+        flex:1,
+        alignItems:'stretch',
+        paddingTop:'5%',
+        paddingHorizontal:'3%',
+    },
+    listTitle:{
+        fontSize: 20,
+    },
+    listContent:{
+        justifyContent:'space-between',
+    },
+  });
   
 export default CandidatesList;
