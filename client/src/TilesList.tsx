@@ -25,6 +25,7 @@ const TilesList = (props: {data:any[]}) => {
     return (
         <View style={styles.tileContainer}>
             {props.data?.map(e => <BaseTile 
+                    key = {e.id}
                     width={width}
                     title={e.name}/>)}
         </View>

@@ -11,33 +11,22 @@ import CandidatesList from './CandidatesList';
 import FilterSearchBar from './FilterSearchBar';
 import SharedFAB from './SharedFAB';
 import * as Colors from './colors';
+import {createStackNavigator} from '@react-navigation/stack'
+import CandidatesHome from './CandidatesHome';
+import CreateForm from './CreateForm';
 
-const candidateSearchFunc = ()=>{};
+const Stack = createStackNavigator();
 
 const CandidatesScreen = () => {
   return (
     <React.Fragment>
-      <View style={styles.screenContainter}>
-          <FilterSearchBar
-              placeholder="Search candidates..."
-              searchFunc={candidateSearchFunc}
-          />
-          <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}
-              contentContainerStyle={styles.scrollViewContentContainer}>
-              <View style={styles.body}>
-                  <CandidatesList
-                      serverUrl= {utils.getAndroidServerURL()}
-                      title="Candidates"
-                  />
-              </View>
-          </ScrollView>
-          <SharedFAB
-            onPressFunc={()=>{}}
-            backgroundColor={Colors.screenThemes.candidates}
-          />
-      </View>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name="Home"
+          component={CandidatesHome}
+        />
+        <Stack.Screen name="Form" component={CreateForm}/>
+      </Stack.Navigator>
     </React.Fragment>
   );
 };

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import {Text} from 'react-native-elements';
 import CandidatesDisplay from './CandidatesDisplay';
 import * as types from './types';
 
@@ -25,7 +26,7 @@ const CandidatesList = (props: {serverUrl: string, title: string}) => {
     return (
         <View style={styles.list}>
             <View style={styles.listContent}>
-                <Text style={styles.listTitle}>{props.title}</Text>
+                <Text h3 style={styles.listTitle}>{props.title}</Text>
                 {data?.map(candidate => <CandidatesDisplay 
                     key = {candidate.id}
                     {...candidate}
@@ -43,7 +44,6 @@ const CandidatesList = (props: {serverUrl: string, title: string}) => {
         paddingHorizontal:'3%',
     },
     listTitle:{
-        fontSize: 20,
         marginHorizontal: '4%',
     },
     listContent:{

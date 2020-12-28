@@ -6,16 +6,16 @@ import CandidatesScreen from './CandidatesScreen';
 import SkillsScreen from './SkillsScreen';
 import * as Colors from './colors';
 
-const HomeIcon = () => <Icon name='home' type='font-awesome'/>
+const HomeIcon = () => <Icon name='home' type='font-awesome'/>;
 const HomeRoute = () => <Text>Music</Text>;
 
-const CandidatesIcon = () => <Icon name='users' type='font-awesome'/>
+const CandidatesIcon = () => <Icon name='users' type='font-awesome'/>;
 const CandidatesRoute = CandidatesScreen;
 
-const SkillsIcon = () => <Icon name='lightbulb-o' type='font-awesome'/>
+const SkillsIcon = () => <Icon name='lightbulb-o' type='font-awesome'/>;
 const SkillsRoute = SkillsScreen;
 
-const AboutIcon = () => <Icon name='info' type='font-awesome'/>
+const AboutIcon = () => <Icon name='info' type='font-awesome'/>;
 const AboutRoute = () => <Text>test</Text>;
 
 const Navigation = () => {

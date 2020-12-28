@@ -7,7 +7,7 @@ const SharedFAB = (props: {onPressFunc: () => void, backgroundColor: string}) =>
   <FAB
     style={[styles.fab, {backgroundColor: props.backgroundColor}]}
     icon={() => <Icon name='plus' type='font-awesome'/>}
-    onPress={() => props.onPressFunc}
+    onPress={props.onPressFunc}
     theme={undefined}
   />
 );
