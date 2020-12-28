@@ -4,6 +4,7 @@ import {Icon} from 'react-native-elements'
 import {StyleSheet, Text, View} from 'react-native'
 import CandidatesScreen from './CandidatesScreen';
 import SkillsScreen from './SkillsScreen';
+import * as Colors from './colors';
 
 const HomeIcon = () => <Icon name='home' type='font-awesome'/>
 const HomeRoute = () => <Text>Music</Text>;
@@ -20,10 +21,10 @@ const AboutRoute = () => <Text>test</Text>;
 const Navigation = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'home', title: 'Home', icon: HomeIcon, color: '#c42d2d' },
-    { key: 'candidates', title: 'Candidates', icon: CandidatesIcon, color:'#2bbaad' },
-    { key: 'skills', title: 'Skills', icon: SkillsIcon, color:'#ffff88' },
-    { key: 'about', title: 'About', icon: AboutIcon, color:'#47b57e' },
+    { key: 'home', title: 'Home', icon: HomeIcon, color: Colors.screenThemes.home},
+    { key: 'candidates', title: 'Candidates', icon: CandidatesIcon, color: Colors.screenThemes.candidates},
+    { key: 'skills', title: 'Skills', icon: SkillsIcon, color: Colors.screenThemes.skills},
+    { key: 'about', title: 'About', icon: AboutIcon, color: Colors.screenThemes.about},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
