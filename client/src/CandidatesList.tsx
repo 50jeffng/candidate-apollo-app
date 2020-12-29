@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, View } from 'react-native';
 import {Text} from 'react-native-elements';
 import CandidatesDisplay from './CandidatesDisplay';
-import * as types from './types';
+import * as types from './modelTypes';
 
 const CandidatesList = (props: {serverUrl: string, title: string}) => {
     const [data, setData] = useState<types.Candidate[]>([]);

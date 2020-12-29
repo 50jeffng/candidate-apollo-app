@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import { accessibilityProps } from 'react-native-paper/lib/typescript/components/MaterialCommunityIcon';
 import TilesList from './TilesList';
-import * as types from './types';
+import * as types from './modelTypes';
 
 const SkillsList = (props: {serverUrl: string, title: string}) => {
     const [data, setData] = useState<types.Skill[]>([]);

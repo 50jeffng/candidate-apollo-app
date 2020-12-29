@@ -10,11 +10,15 @@ import FilterSearchBar from './FilterSearchBar';
 import SkillsList from './SkillsList';
 import SharedFAB from './SharedFAB';
 import * as Colors from './colors';
+import * as NavigationTypes from './navigationTypes';
 
 
 const skillSearchFunc = ()=>{};
+const skillFormParam = {
+    title: "Create Skill",
+}
 
-const SkillsScreen = () => {
+const SkillsHome = (props: {navigation: NavigationTypes.ScreenNavigationProp}) => {
   return (
     <React.Fragment>
       <View style={styles.screenContainter}>
@@ -35,7 +39,7 @@ const SkillsScreen = () => {
           </ScrollView>
       </View>
       <SharedFAB
-        onPressFunc={()=>{}}
+        onPressFunc={()=>{props.navigation.navigate('SkillForm', skillFormParam)}}
         backgroundColor={Colors.screenThemes.skills}
       />
     </React.Fragment>
@@ -57,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SkillsScreen;
+export default SkillsHome;

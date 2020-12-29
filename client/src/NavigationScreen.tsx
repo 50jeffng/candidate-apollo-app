@@ -2,23 +2,19 @@ import React from 'react';
 import {BottomNavigation} from 'react-native-paper';
 import {Icon} from 'react-native-elements'
 import {StyleSheet, Text, View} from 'react-native'
-import CandidatesScreen from './CandidatesScreen';
-import SkillsScreen from './SkillsScreen';
+import CandidatesHome from './CandidatesHome';
+import SkillsHome from './SkillsHome';
 import * as Colors from './colors';
+import * as NavigationTypes from './navigationTypes'
 
+// BottomNavigation icons
 const HomeIcon = () => <Icon name='home' type='font-awesome'/>;
-const HomeRoute = () => <Text>Music</Text>;
-
 const CandidatesIcon = () => <Icon name='users' type='font-awesome'/>;
-const CandidatesRoute = CandidatesScreen;
-
 const SkillsIcon = () => <Icon name='lightbulb-o' type='font-awesome'/>;
-const SkillsRoute = SkillsScreen;
-
 const AboutIcon = () => <Icon name='info' type='font-awesome'/>;
-const AboutRoute = () => <Text>test</Text>;
 
-const Navigation = () => {
+
+const NavigationScreen = (props: {navigation: NavigationTypes.ScreenNavigationProp}) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'home', title: 'Home', icon: HomeIcon, color: Colors.screenThemes.home},
@@ -26,6 +22,15 @@ const Navigation = () => {
     { key: 'skills', title: 'Skills', icon: SkillsIcon, color: Colors.screenThemes.skills},
     { key: 'about', title: 'About', icon: AboutIcon, color: Colors.screenThemes.about},
   ]);
+
+  // Navigation Scenes
+  const HomeRoute = () => <Text>Music</Text>;
+
+  const CandidatesRoute = () => <CandidatesHome navigation={props.navigation}/>;
+
+  const SkillsRoute = () => <SkillsHome navigation={props.navigation}/>;
+
+  const AboutRoute = () => <Text>test</Text>;
 
   const renderScene = BottomNavigation.SceneMap({
     home: HomeRoute,
@@ -51,4 +56,4 @@ const Navigation = () => {
 //     },
 // });
 
-export default Navigation;
+export default NavigationScreen;
