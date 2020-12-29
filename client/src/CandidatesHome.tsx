@@ -3,11 +3,9 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Text,
 } from 'react-native';
 
 
-import * as utils from './utils';
 import CandidatesList from './CandidatesList';
 import FilterSearchBar from './FilterSearchBar';
 import SharedFAB from './SharedFAB';
@@ -32,7 +30,6 @@ const CandidatesHome = (props: {navigation: NavigationTypes.ScreenNavigationProp
             contentContainerStyle={styles.scrollViewContentContainer}>
             <View style={styles.body}>
                 <CandidatesList
-                    serverUrl= {utils.getAndroidServerURL()}
                     title="Candidates"
                 />
             </View>

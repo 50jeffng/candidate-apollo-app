@@ -5,7 +5,6 @@ import {
   View,
 } from 'react-native';
 
-import * as utils from './utils';
 import FilterSearchBar from './FilterSearchBar';
 import SkillsList from './SkillsList';
 import SharedFAB from './SharedFAB';
@@ -32,7 +31,6 @@ const SkillsHome = (props: {navigation: NavigationTypes.ScreenNavigationProp}) =
               contentContainerStyle={styles.scrollViewContentContainer}>
               <View style={styles.body}>
                   <SkillsList
-                    serverUrl= {utils.getAndroidServerURL()}
                     title="Skills"
                   />
               </View>

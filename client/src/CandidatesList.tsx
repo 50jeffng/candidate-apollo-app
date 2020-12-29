@@ -1,33 +1,40 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, View } from 'react-native';
-import {Text} from 'react-native-elements';
+import { useQuery } from '@apollo/client';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { Text as EText } from 'react-native-elements';
 import CandidatesDisplay from './CandidatesDisplay';
 import * as types from './modelTypes';
+import * as Query from './gqlQueries';
+import * as CommonStyles from './commonStyles';
 
-const CandidatesList = (props: {serverUrl: string, title: string}) => {
-    const [data, setData] = useState<types.Candidate[]>([]);
-    const getData = () => {
-        return fetch(props.serverUrl + '/graphql?query={candidates{id,name,description,skills{name}}}')
-            .then((response) => response.json())
-            .then((json) => {
-                return json.data.candidates;
-            })
-            .then(data => data.forEach((e:types.Candidate) => setData(prevState => [...prevState, e])))
-            .catch((error) => {
-                console.error(error);
-                return error;
-            });
-    };
+const CandidatesList = (props: {title: string}) => {
+    const {loading, error, data} = useQuery(Query.CANDIDATES)
+    if (loading) return <Text style={CommonStyles.loadingMsg}>Loading...</Text>;
+    if (error) return <Text style={CommonStyles.errorMsg}>Error: {error.message}</Text>;
+    
+    // const [data, setData] = useState<types.Candidate[]>([]);
+    // const getData = () => {
+    //     return fetch(props.serverUrl + '/graphql?query={candidates{id,name,description,skills{name}}}')
+    //         .then((response) => response.json())
+    //         .then((json) => {
+    //             return json.data.candidates;
+    //         })
+    //         .then(data => data.forEach((e:types.Candidate) => setData(prevState => [...prevState, e])))
+    //         .catch((error) => {
+    //             console.error(error);
+    //             return error;
+    //         });
+    // };
 
-    useEffect(()=>{
-        getData();
-        return () => setData([]);
-    }, []);
+    // useEffect(()=>{
+    //     getData();
+    //     return () => setData([]);
+    // }, []);
     return (
         <View style={styles.list}>
             <View style={styles.listContent}>
-                <Text h3 style={styles.listTitle}>{props.title}</Text>
-                {data?.map(candidate => <CandidatesDisplay 
+                <EText h3 style={styles.listTitle}>{props.title}</EText>
+                {data.candidates.map((candidate: types.Candidate) => <CandidatesDisplay 
                     key = {candidate.id}
                     {...candidate}
                 />)}
