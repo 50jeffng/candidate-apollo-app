@@ -30,23 +30,25 @@ export const resolvers = {
     },
 
     Mutation: {
-      addCandidate: async (_: unknown, {name}: {name: string}) => {
-        const candidate = new Candidate({name});
+      createCandidate: async (_: unknown, props: {name: string, description: string, isHired: boolean}) => {
         try {
+          const candidate = new Candidate(props);
           const doc = await candidate.save();
           return doc;
         } catch(error) {
-          throw new Error(error);
+          console.error(error);
+          return null;
         }
       },
 
-      addSkill: async (_: unknown, {name}: {name: string}) => {
-        const skill = new Skill({name});
+      createSkill: async (_: unknown, props: {name: string, description: string, type: string}) => {
         try {
+          const skill = new Skill(props);
           const doc = await skill.save();
           return doc;
         } catch(error) {
-          throw new Error(error);
+          console.error(error);
+          return null;
         }
       },
 
@@ -54,11 +56,11 @@ export const resolvers = {
         if(!mongoose.Types.ObjectId.isValid(id)) return false;
         try {
           const doc = await Candidate.findByIdAndDelete(id);
-          if(!doc) return false;
-          return true;
+          if(!doc) return null;
+          return doc;
         } catch(error) {
           console.error(error);
-          return false;
+          return null;
         }
       },
 
@@ -66,11 +68,11 @@ export const resolvers = {
         if(!mongoose.Types.ObjectId.isValid(id)) return false;
         try {
           const doc = await Skill.findByIdAndDelete(id);
-          if(!doc) return false;
-          return true;
+          if(!doc) return null;
+          return doc;
         } catch(error) {
           console.error(error);
-          return false;
+          return null;
         }
       },
     }

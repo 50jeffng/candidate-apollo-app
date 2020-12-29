@@ -10,10 +10,10 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addCandidate(name: String!): Candidate
-    deleteCandidate(id: ID!): Boolean!
-    addSkill(name: String!): Skill
-    deleteSkill(id: ID!): Boolean!
+    createCandidate(name: String!, description: String, isHired: Boolean): Candidate
+    deleteCandidate(id: ID!): Candidate
+    createSkill(name: String!, description: String, type: String): Skill
+    deleteSkill(id: ID!): Skill
   }
 
   # type UpdateResponse {
