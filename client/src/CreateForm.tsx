@@ -9,11 +9,12 @@ const DescriptionIcon = <Icon name='file-text-o' type='font-awesome'/>;
 const BackIcon = <Icon name='arrow-left' type='font-awesome'/>;
 
 const CreateForm = (props: {
-        navigation:NavigationTypes.FormScreenNavigationProp, 
+        navigation:NavigationTypes.ScreenNavigationProp, 
         title: string,
         children: React.ReactNode,
     }) => {
-    const [inputText, setInputText] = useState({comment: ''});
+    const [nameInputText, setNameInputText] = useState('');
+    const [descriptionInputText, setDescriptionInputText] = useState('');
     return (
         <View style={styles.formContainer}>
             <EText h2 style={styles.formTitle}>{props.title}</EText>
@@ -21,24 +22,17 @@ const CreateForm = (props: {
                 placeholder="Name"
                 leftIcon={NameIcon}
                 style={styles.inputText}
-                value={inputText.comment}
-                onChangeText={value => setInputText({ comment: value })}
+                value={nameInputText}
+                onChangeText={value => setNameInputText(value)}
             />
             <Input
                 placeholder="Description"
                 leftIcon={DescriptionIcon}
                 style={styles.inputText}
-                value={inputText.comment}
-                onChangeText={value => setInputText({ comment: value })}
+                value={descriptionInputText}
+                onChangeText={value => setDescriptionInputText(value)}
             />
             {props.children}
-            {/* <Input
-                placeholder="Name"
-                leftIcon={NameIcon}
-                style={styles.inputText}
-                value={inputText.comment}
-                onChangeText={value => setInputText({ comment: value })}
-            /> */}
             <View style={styles.buttonContainer}>
                 <Button 
                     title="Go back"

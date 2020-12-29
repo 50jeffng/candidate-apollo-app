@@ -12,7 +12,7 @@ const SkillCreateForm = (props: {
     navigation:NavigationTypes.ScreenNavigationProp, 
     }) => {
     const { title } = props.route.params;
-    const [inputText, setInputText] = useState({comment: ''});
+    const [typeInputText, setTypeInputText] = useState('');
     return (
         <CreateForm
             navigation={props.navigation}
@@ -22,8 +22,8 @@ const SkillCreateForm = (props: {
                 placeholder="Type"
                 leftIcon={TypeIcon}
                 style={styles.inputText}
-                value={inputText.comment}
-                onChangeText={value => setInputText({ comment: value })}
+                value={typeInputText}
+                onChangeText={value => setTypeInputText(value)}
             />
         </CreateForm>
     )
