@@ -3,6 +3,7 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  Text,
 } from 'react-native';
 
 
@@ -14,6 +15,11 @@ import * as Colors from './colors';
 import * as NavigationTypes from './navigationTypes';
 
 const candidateSearchFunc = ()=>{};
+const Test = <Text>test</Text>;
+const candidateFormParam = {
+    title: "Create Candidate",
+    extraFields: Test,
+}
 
 const CandidatesHome = (props: {navigation: NavigationTypes.FormScreenNavigationProp}) => {
     return(
@@ -34,7 +40,7 @@ const CandidatesHome = (props: {navigation: NavigationTypes.FormScreenNavigation
             </View>
         </ScrollView>
         <SharedFAB
-          onPressFunc={()=>{props.navigation.navigate('Form', {title:"Test"})}}
+          onPressFunc={()=>{props.navigation.navigate('Form', candidateFormParam)}}
           backgroundColor={Colors.screenThemes.candidates}
         />
       </View>)

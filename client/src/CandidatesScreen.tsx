@@ -13,7 +13,7 @@ import SharedFAB from './SharedFAB';
 import * as Colors from './colors';
 import {createStackNavigator} from '@react-navigation/stack'
 import CandidatesHome from './CandidatesHome';
-import CreateForm from './CreateForm';
+import CandidateCreateForm from './CandidateCreateForm'
 
 const Stack = createStackNavigator();
 
@@ -25,7 +25,7 @@ const CandidatesScreen = () => {
           name="Home"
           component={CandidatesHome}
         />
-        <Stack.Screen name="Form" component={CreateForm}/>
+        <Stack.Screen name="Form" component={CandidateCreateForm}/>
       </Stack.Navigator>
     </React.Fragment>
   );

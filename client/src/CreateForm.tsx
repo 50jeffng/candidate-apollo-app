@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Input} from 'react-native-elements';
-import * as NavigationTypes from './navigationTypes';
 import { Text as EText, Button, Icon } from 'react-native-elements';
+import * as NavigationTypes from './navigationTypes';
 
 const NameIcon = <Icon name='id-card' type='font-awesome'/>;
 const DescriptionIcon = <Icon name='file-text-o' type='font-awesome'/>;
 const BackIcon = <Icon name='arrow-left' type='font-awesome'/>;
 
 const CreateForm = (props: {
-    route: NavigationTypes.FormScreenRouteProp
-    navigation:NavigationTypes.FormScreenNavigationProp, 
-    placeholder:string, 
-    searchFunc:(text:string) => void}) => {
-    const { title } = props.route.params;
+        navigation:NavigationTypes.FormScreenNavigationProp, 
+        title: string,
+        children: React.ReactNode,
+    }) => {
     const [inputText, setInputText] = useState({comment: ''});
     return (
         <View style={styles.formContainer}>
-            <EText h2 style={styles.formTitle}>{title}</EText>
+            <EText h2 style={styles.formTitle}>{props.title}</EText>
             <Input
                 placeholder="Name"
                 leftIcon={NameIcon}
@@ -32,6 +31,7 @@ const CreateForm = (props: {
                 value={inputText.comment}
                 onChangeText={value => setInputText({ comment: value })}
             />
+            {props.children}
             {/* <Input
                 placeholder="Name"
                 leftIcon={NameIcon}
