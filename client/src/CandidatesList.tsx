@@ -12,6 +12,8 @@ const CandidatesList = (props: {navigation: NavigationTypes.ScreenNavigationProp
     const {loading, error, data, refetch} = useQuery(Query.CANDIDATES);
     if (loading) return <Text style={CommonStyles.loadingMsg}>Loading...</Text>;
     if (error) return <Text style={CommonStyles.errorMsg}>Error: {error.message}</Text>;
+
+    if(props.isRefreshed) refetch();
     
     // const [data, setData] = useState<types.Candidate[]>([]);
     // const getData = () => {
