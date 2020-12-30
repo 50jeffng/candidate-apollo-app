@@ -4,8 +4,9 @@ import {
 } from 'react-native';
 import {createStackNavigator, StackNavigationOptions} from '@react-navigation/stack'
 import NavigationScreen from './NavigationScreen';
-import CandidateCreateForm from './CandidateCreateForm'
-import SkillCreateForm from './SkillCreateForm'
+import CandidateCreateForm from './CandidateCreateForm';
+import SkillCreateForm from './SkillCreateForm';
+import Profile from './Profile';
 
 const Stack = createStackNavigator();
 // Constants for Stack
@@ -25,6 +26,7 @@ const AppMainStack = () => {
         />
         <Stack.Screen name="CandidateForm" component={CandidateCreateForm}/>
         <Stack.Screen name="SkillForm" component={SkillCreateForm}/>
+        <Stack.Screen name="Profile" component={Profile}/>
       </Stack.Navigator>
     </React.Fragment>
   );

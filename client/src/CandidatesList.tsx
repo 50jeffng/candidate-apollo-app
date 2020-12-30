@@ -6,9 +6,10 @@ import CandidatesDisplay from './CandidatesDisplay';
 import * as types from './modelTypes';
 import * as Query from './gqlQueries';
 import * as CommonStyles from './commonStyles';
+import * as NavigationTypes from './navigationTypes';
 
-const CandidatesList = (props: {title: string}) => {
-    const {loading, error, data} = useQuery(Query.CANDIDATES)
+const CandidatesList = (props: {navigation: NavigationTypes.ScreenNavigationProp, title: string}) => {
+    const {loading, error, data} = useQuery(Query.CANDIDATES);
     if (loading) return <Text style={CommonStyles.loadingMsg}>Loading...</Text>;
     if (error) return <Text style={CommonStyles.errorMsg}>Error: {error.message}</Text>;
     
@@ -35,6 +36,7 @@ const CandidatesList = (props: {title: string}) => {
             <View style={styles.listContent}>
                 <EText h3 style={styles.listTitle}>{props.title}</EText>
                 {data.candidates.map((candidate: types.Candidate) => <CandidatesDisplay 
+                    navigation={props.navigation}
                     key = {candidate.id}
                     {...candidate}
                 />)}

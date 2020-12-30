@@ -31,6 +31,7 @@ const SkillsHome = (props: {navigation: NavigationTypes.ScreenNavigationProp}) =
               contentContainerStyle={styles.scrollViewContentContainer}>
               <View style={styles.body}>
                   <SkillsList
+                    navigation={props.navigation}
                     title="Skills"
                   />
               </View>

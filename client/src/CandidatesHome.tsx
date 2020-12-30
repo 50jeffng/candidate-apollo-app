@@ -30,6 +30,7 @@ const CandidatesHome = (props: {navigation: NavigationTypes.ScreenNavigationProp
             contentContainerStyle={styles.scrollViewContentContainer}>
             <View style={styles.body}>
                 <CandidatesList
+                    navigation={props.navigation}
                     title="Candidates"
                 />
             </View>

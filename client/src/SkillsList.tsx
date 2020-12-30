@@ -5,9 +5,17 @@ import TilesList from './TilesList';
 import * as Query from './gqlQueries';
 import * as CommonStyles from './commonStyles';
 import { useQuery } from '@apollo/client';
+import * as NavigationTypes from './navigationTypes';
 
-const SkillsList = (props: {title: string}) => {
+const SkillsList = (props: {navigation: NavigationTypes.ScreenNavigationProp, title: string}) => {
     const {loading, error, data} = useQuery(Query.SKILLS)
+    const skillProfileParam = (id: string) => {
+        return ({
+            id: id,
+            type: "Skill",
+        });
+    }
+    const onPressTile = (id:string) => {props.navigation.navigate("Profile", skillProfileParam(id))}
     if (loading) return <Text style={CommonStyles.loadingMsg}>Loading...</Text>;
     if (error) return <Text style={CommonStyles.errorMsg}>Error: {error.message}</Text>;
 
@@ -17,6 +25,7 @@ const SkillsList = (props: {title: string}) => {
                 <Text h3 style={styles.listTitle}>{props.title}</Text>
                 <TilesList
                     data={data.skills}
+                    tileOnPressFunc={onPressTile}
                 />
             </View>
         </View>

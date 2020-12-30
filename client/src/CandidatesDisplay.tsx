@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button, Text, TouchableOpacity } from 'react-native';
 import Card from './Card';
+import * as NavigationTypes from './navigationTypes';
 
-const CandidatesDisplay = (prop: {id: string, name: string, description: string, skills: Array<string>}) => {
+const CandidatesDisplay = (props: {navigation: NavigationTypes.ScreenNavigationProp, id: string, name: string, description: string, skills: Array<string>}) => {
     // const [candidate, setCandidate] = useState({});
+    const candidateProfileParam = {
+        id: props.id,
+        type: "Candidate",
+    }
+    const onPressCard = () => {props.navigation.navigate("Profile", candidateProfileParam)}
     
     useEffect(()=>{
         
@@ -12,14 +18,13 @@ const CandidatesDisplay = (prop: {id: string, name: string, description: string,
         // });
     });
     return (
-        <View>
+        <TouchableOpacity onPress={onPressCard}>
             <Card>
                 <Text>`Candidate`</Text>
-                <Text>`id: {prop.id}`</Text>
-                <Text>`name: {prop.name}`</Text>
-                <Text>`description: {prop.description}`</Text>
+                <Text>`id: {props.id}`</Text>
+                <Text>`name: {props.name}`</Text>
             </Card>
-        </View>
+        </TouchableOpacity>  
     );
 };
   
