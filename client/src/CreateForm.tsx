@@ -18,34 +18,36 @@ const CreateForm = (props: {
     const [descriptionInputText, setDescriptionInputText] = useState('');
     return (
         <View style={styles.formContainer}>
-            <EText h2 style={styles.formTitle}>{props.title}</EText>
-            <Input
-                placeholder="Name"
-                leftIcon={NameIcon}
-                style={styles.inputText}
-                value={nameInputText}
-                onChangeText={value => setNameInputText(value)}
-            />
-            <Input
-                placeholder="Description"
-                leftIcon={DescriptionIcon}
-                style={styles.inputText}
-                value={descriptionInputText}
-                onChangeText={value => setDescriptionInputText(value)}
-            />
-            {props.children}
+            <View style={styles.inputContainer}>
+                <EText h2 style={styles.formTitle}>{props.title}</EText>
+                <Input
+                    placeholder="Name"
+                    leftIcon={NameIcon}
+                    style={styles.inputText}
+                    value={nameInputText}
+                    onChangeText={value => setNameInputText(value)}
+                />
+                <Input
+                    placeholder="Description"
+                    leftIcon={DescriptionIcon}
+                    style={styles.inputText}
+                    value={descriptionInputText}
+                    onChangeText={value => setDescriptionInputText(value)}
+                />
+                {props.children}
+            </View>
             <View style={styles.buttonContainer}>
                 <Button 
                     title="Go back"
                     type="outline"
                     icon={BackIcon}
-                    style={[styles.buttons, styles.backButton]}
+                    containerStyle={[styles.buttons, styles.backButton]}
                     onPress={()=>{props.navigation.goBack()}}
                 />
                 <Button 
                     title="Confirm"
                     type="solid"
-                    style={[styles.buttons, styles.confirmButton]}
+                    containerStyle={[styles.buttons, styles.confirmButton]}
                     onPress={()=>{props.mutationFunc(nameInputText, descriptionInputText)}}
                 />
             </View>
@@ -56,6 +58,8 @@ const CreateForm = (props: {
 
 const styles = StyleSheet.create({
     formContainer:{
+        flex: 1,
+        flexDirection: 'column',
         paddingVertical: '5%',
         paddingHorizontal:'3%',
     },
@@ -64,9 +68,12 @@ const styles = StyleSheet.create({
         marginBottom: '10%',
     },
     inputText:{},
+    inputContainer:{
+        flex: 1,
+        marginHorizontal: '2%',
+    },
     buttonContainer:{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         paddingHorizontal:'3%',
     },
@@ -74,10 +81,8 @@ const styles = StyleSheet.create({
         margin: '2%',
     },
     backButton:{
-        // alignSelf: 'flex-start',
     },
     confirmButton:{
-        // alignSelf: 'flex-end',
     },
 });
 

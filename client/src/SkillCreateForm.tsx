@@ -36,12 +36,12 @@ const SkillCreateForm = (props: {
                     value={typeInputText}
                     onChangeText={value => setTypeInputText(value)}
                 />
+                <View style={CommonStyles.styles.center}>
+                    {mutationLoading && <Text style={CommonStyles.loadingMsg}>Loading...</Text>}
+                    {mutationError && <Text style={CommonStyles.errorMsg}>Error: {mutationError.message}</Text>}
+                    {(data && data.createSkill) && <Text style={CommonStyles.confirmationMsg}>Sent!</Text>}
+                </View>
             </CreateForm>
-            <View style={CommonStyles.styles.center}>
-                {mutationLoading && <Text style={CommonStyles.loadingMsg}>Loading...</Text>}
-                {mutationError && <Text style={CommonStyles.errorMsg}>Error: {mutationError.message}</Text>}
-                {(data && data.createSkill) && <Text style={CommonStyles.confirmationMsg}>Sent!</Text>}
-            </View>
         </React.Fragment>
         
     )

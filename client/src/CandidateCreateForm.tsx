@@ -34,12 +34,12 @@ const CandidateCreateForm = (props: {
                     size={32}
                     containerStyle={styles.checkBoxContainer}
                 />
+                <View style={CommonStyles.styles.center}>
+                    {mutationLoading && <Text style={CommonStyles.loadingMsg}>Loading...</Text>}
+                    {mutationError && <Text style={CommonStyles.errorMsg}>Error: {mutationError.message}</Text>}
+                    {(data && data.createCandidate) && <Text style={CommonStyles.confirmationMsg}>Sent!</Text>}
+                </View>
             </CreateForm>
-            <View style={CommonStyles.styles.center}>
-                {mutationLoading && <Text style={CommonStyles.loadingMsg}>Loading...</Text>}
-                {mutationError && <Text style={CommonStyles.errorMsg}>Error: {mutationError.message}</Text>}
-                {(data && data.createCandidate) && <Text style={CommonStyles.confirmationMsg}>Sent!</Text>}
-            </View>
         </React.Fragment>
     )
 };
