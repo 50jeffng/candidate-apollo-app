@@ -16,6 +16,9 @@ const CandidateCreateForm = (props: {
     const [checked, setChecked] = useState(false);
     const [createCandidate, { data, loading: mutationLoading, error: mutationError }] = useMutation(Mutation.CREATE_CANDIDATE);
 
+    const onBackCandidates = () => {
+        props.navigation.navigate("Home", {candIsRefreshed: true, skillIsRefreshed:false})
+    }
     const onConfirmForm = (name: string, description: string) => {
         createCandidate({variables: {name:name, description:description, isHired:checked}})
     };
@@ -25,6 +28,7 @@ const CandidateCreateForm = (props: {
             <CreateForm
                 navigation={props.navigation}
                 title={title}
+                onBackFunc={onBackCandidates}
                 mutationFunc={onConfirmForm}
             >
                 <CheckBox

@@ -11,7 +11,8 @@ const BackIcon = <Icon name='arrow-left' type='font-awesome'/>;
 const CreateForm = (props: {
         navigation:NavigationTypes.ScreenNavigationProp, 
         title: string,
-        mutationFunc: (name: string, description: string) => void
+        onBackFunc: () => void,
+        mutationFunc: (name: string, description: string) => void,
         children: React.ReactNode,
     }) => {
     const [nameInputText, setNameInputText] = useState('');
@@ -42,7 +43,7 @@ const CreateForm = (props: {
                     type="outline"
                     icon={BackIcon}
                     containerStyle={[styles.buttons, styles.backButton]}
-                    onPress={()=>{props.navigation.goBack()}}
+                    onPress={props.onBackFunc}
                 />
                 <Button 
                     title="Confirm"

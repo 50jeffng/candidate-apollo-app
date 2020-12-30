@@ -18,6 +18,10 @@ const SkillCreateForm = (props: {
     const [typeInputText, setTypeInputText] = useState('');
     const [createSkill, { data, loading: mutationLoading, error: mutationError }] = useMutation(Mutation.CREATE_SKILL);
 
+    const onBackSkills = () => {
+        props.navigation.navigate("Home", {candIsRefreshed: false, skillIsRefreshed:true})
+    }
+
     const onConfirmForm = (name: string, description: string) => {
         createSkill({variables: {name:name, description:description, type:typeInputText}})
     };
@@ -27,6 +31,7 @@ const SkillCreateForm = (props: {
             <CreateForm
                 navigation={props.navigation}
                 title={title}
+                onBackFunc={onBackSkills}
                 mutationFunc={onConfirmForm}
             >
                 <Input
