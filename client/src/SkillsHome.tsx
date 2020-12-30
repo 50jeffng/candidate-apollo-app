@@ -17,7 +17,8 @@ const skillFormParam = {
     title: "Create Skill",
 }
 
-const SkillsHome = (props: {navigation: NavigationTypes.ScreenNavigationProp}) => {
+const SkillsHome = (props: {route: NavigationTypes.HomeScreenRouteProp, navigation: NavigationTypes.ScreenNavigationProp}) => {
+  const { skillIsRefreshed } = props.route.params;
   return (
     <React.Fragment>
       <View style={styles.screenContainter}>
@@ -33,6 +34,7 @@ const SkillsHome = (props: {navigation: NavigationTypes.ScreenNavigationProp}) =
                   <SkillsList
                     navigation={props.navigation}
                     title="Skills"
+                    isRefreshed={skillIsRefreshed}
                   />
               </View>
           </ScrollView>

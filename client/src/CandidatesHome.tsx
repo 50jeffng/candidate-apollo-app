@@ -17,7 +17,8 @@ const candidateFormParam = {
     title: "Create Candidate",
 }
 
-const CandidatesHome = (props: {navigation: NavigationTypes.ScreenNavigationProp}) => {
+const CandidatesHome = (props: {route: NavigationTypes.HomeScreenRouteProp, navigation: NavigationTypes.ScreenNavigationProp}) => {
+    const { candIsRefreshed } = props.route.params;
     return(
       <View style={styles.screenContainter}>
         <FilterSearchBar
@@ -32,6 +33,7 @@ const CandidatesHome = (props: {navigation: NavigationTypes.ScreenNavigationProp
                 <CandidatesList
                     navigation={props.navigation}
                     title="Candidates"
+                    isRefreshed={candIsRefreshed}
                 />
             </View>
         </ScrollView>

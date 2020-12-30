@@ -7,6 +7,7 @@ import NavigationScreen from './NavigationScreen';
 import CandidateCreateForm from './CandidateCreateForm';
 import SkillCreateForm from './SkillCreateForm';
 import Profile from './Profile';
+import * as NavigationTypes from './navigationTypes'
 
 const Stack = createStackNavigator();
 // Constants for Stack
@@ -16,6 +17,8 @@ const stackScreenOption:StackNavigationOptions = {
   cardStyle: {backgroundColor: 'white'},
 }
 
+const homeInitialParams = { candIsRefreshed: false, skillIsRefreshed: false}
+
 const AppMainStack = () => {
   return (
     <React.Fragment>
@@ -23,6 +26,7 @@ const AppMainStack = () => {
         <Stack.Screen
           name={initialRouteName}
           component={NavigationScreen}
+          initialParams={homeInitialParams}
         />
         <Stack.Screen name="CandidateForm" component={CandidateCreateForm}/>
         <Stack.Screen name="SkillForm" component={SkillCreateForm}/>

@@ -3,7 +3,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import * as NavigationTypes from './navigationTypes';
 import { Text as EText, Button, Icon } from 'react-native-elements';
 import * as Query from './gqlQueries';
-import { useQuery } from '@apollo/client';
+import * as Mutation from './gqlMutations';
+import { useQuery, useMutation } from '@apollo/client';
 import * as CommonStyles from './commonStyles';
 
 const BackIcon = <Icon name='arrow-left' type='font-awesome'/>;
@@ -14,21 +15,42 @@ const Profile = (props: {
     }) => {
     const { id, type } = props.route.params;
     
-    const {loading, error, data} = useQuery(type === "Candidate" ? Query.CANDIDATE: Query.SKILL, {
+    const {loading: queryLoading, error: queryError, data: queryData} = useQuery(type === "Candidate" ? Query.CANDIDATE: Query.SKILL, {
         variables: {id: id},
     });
 
-    if (loading) return <Text style={CommonStyles.loadingMsg}>Loading...</Text>;
-    if (error) return <Text style={CommonStyles.errorMsg}>Error: {error.message}</Text>;
-    if (data) {
-        const dataObj = type === "Candidate" ? data.candidate: data.skill;
+    const deleteMutation = type === "Candidate" ? Mutation.DELETE_CANDIDATE: Mutation.DELETE_SKILL;
+    const [deleteProfile, { data: deleteData, loading: deleteLoading, error: deleteError }] = useMutation(deleteMutation);
+
+    const onDeleteProfile = () => {
+        deleteProfile(
+            {variables: {id: id}
+        });
+        const candIsRefreshed = type === "Candidate";
+        const skillIsRefreshed = type !== "Candidate";
+        props.navigation.navigate("Home", {candIsRefreshed: candIsRefreshed, skillIsRefreshed:skillIsRefreshed});
+    };
+
+    if (queryLoading) return <Text style={CommonStyles.loadingMsg}>Loading...</Text>;
+    if (queryError) return <Text style={CommonStyles.errorMsg}>Error: {queryError.message}</Text>;
+    if (queryData) {
+        const dataObj = type === "Candidate" ? queryData.candidate: queryData.skill;
         const fieldKeys= Object.keys(dataObj)
                             .filter(e => e !=="__typename");
         const fieldNames= fieldKeys.map(e=>e.charAt(0).toUpperCase() + e.slice(1));
 
         return(
             <View style={styles.container}>
-                {type === "Candidate" ? <EText h2 style={styles.fieldTitle}>Candidate</EText>: <EText h2>Skill</EText> }
+                <View style={styles.header}>
+                    {type === "Candidate" ? <EText h2 style={styles.fieldTitle}>Candidate</EText>: <EText h2>Skill</EText> }
+                    <Button 
+                        title="Delete"
+                        type="solid"
+                        containerStyle={[styles.deleteButton]}
+                        buttonStyle={styles.deleteButtonStyle}
+                        onPress={onDeleteProfile}
+                    />
+                </View>
                 {fieldKeys.map((e: string, index: number) => {
                     return(
                     <View style={styles.fieldView}  key = {e + dataObj.id}>
@@ -59,6 +81,10 @@ const styles = StyleSheet.create({
         marginHorizontal:'6%',
         marginVertical:'6%',
     },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     fieldView:{
         flexDirection: 'column',
         marginLeft: '3%',
@@ -77,6 +103,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom:0,
         left:0,
+    },
+    deleteButton:{
+        alignSelf: 'flex-end',
+    },
+    deleteButtonStyle:{
+        backgroundColor: 'firebrick',
     },
 });
 

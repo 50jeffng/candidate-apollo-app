@@ -14,7 +14,7 @@ const SkillsIcon = () => <Icon name='lightbulb-o' type='font-awesome'/>;
 const AboutIcon = () => <Icon name='info' type='font-awesome'/>;
 
 
-const NavigationScreen = (props: {navigation: NavigationTypes.ScreenNavigationProp}) => {
+const NavigationScreen = (props: {route: NavigationTypes.HomeScreenRouteProp, navigation: NavigationTypes.ScreenNavigationProp}) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'home', title: 'Home', icon: HomeIcon, color: Colors.screenThemes.home},
@@ -26,9 +26,9 @@ const NavigationScreen = (props: {navigation: NavigationTypes.ScreenNavigationPr
   // Navigation Scenes
   const HomeRoute = () => <Text>Music</Text>;
 
-  const CandidatesRoute = () => <CandidatesHome navigation={props.navigation}/>;
+  const CandidatesRoute = () => <CandidatesHome route={props.route} navigation={props.navigation}/>;
 
-  const SkillsRoute = () => <SkillsHome navigation={props.navigation}/>;
+  const SkillsRoute = () => <SkillsHome route={props.route} navigation={props.navigation}/>;
 
   const AboutRoute = () => <Text>test</Text>;
 

@@ -7,8 +7,9 @@ import * as CommonStyles from './commonStyles';
 import { useQuery } from '@apollo/client';
 import * as NavigationTypes from './navigationTypes';
 
-const SkillsList = (props: {navigation: NavigationTypes.ScreenNavigationProp, title: string}) => {
-    const {loading, error, data} = useQuery(Query.SKILLS)
+const SkillsList = (props: {navigation: NavigationTypes.ScreenNavigationProp, title: string, isRefreshed: boolean}) => {
+    const {loading, error, data, refetch} = useQuery(Query.SKILLS)
+    if(props.isRefreshed) refetch();
     const skillProfileParam = (id: string) => {
         return ({
             id: id,

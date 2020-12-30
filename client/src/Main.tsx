@@ -9,7 +9,24 @@ import { getAndroidServerURL } from './utils';
 // Init Apollo Client
 const apolloClient = new ApolloClient({
   uri: getAndroidServerURL() + '/graphql',
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          candidates: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+          skills: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+        },
+      },
+    }
+  }),
 });
 
 const Main = () => {
