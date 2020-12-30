@@ -34,7 +34,6 @@ const App = () => {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider useDark={colorScheme === 'dark'}>
-      {/* <StatusBar barStyle="dark-content" /> */}
       <SafeAreaView style={styles.container}>
         <AppMainStack/>
       </SafeAreaView>
@@ -45,7 +44,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    // paddingTop:'5%',
   },
 });
 

@@ -22,10 +22,10 @@ export const typeDefs = gql`
   #   modified: Modification!
   # }
 
-  type Modification {
-    candidates: [Candidate]
-    skills: [Skill]
-  }
+  # type Modification {
+  #   candidates: [Candidate]
+  #   skills: [Skill]
+  # }
 
   type Skill {
     id: ID!

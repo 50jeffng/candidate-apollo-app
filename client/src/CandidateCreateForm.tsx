@@ -16,6 +16,7 @@ const CandidateCreateForm = (props: {
     const [checked, setChecked] = useState(false);
     const [createCandidate, { data, loading: mutationLoading, error: mutationError }] = useMutation(Mutation.CREATE_CANDIDATE);
 
+    // functions to pass in general CreateForm
     const onBackCandidates = () => {
         props.navigation.navigate("Home", {candIsRefreshed: true, skillIsRefreshed:false})
     }
