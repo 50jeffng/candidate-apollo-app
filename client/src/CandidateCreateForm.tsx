@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Input,CheckBox} from 'react-native-elements';
 import * as NavigationTypes from './navigationTypes';
 import { Text as EText, Button, Icon } from 'react-native-elements';
 import CreateForm from './CreateForm';
+import * as Mutation from './gqlMutations';
+import { useMutation } from '@apollo/client';
+import * as CommonStyles from './commonStyles';
 
 const CandidateCreateForm = (props: {
     route: NavigationTypes.FormScreenRouteProp,
@@ -11,19 +14,33 @@ const CandidateCreateForm = (props: {
     }) => {
     const { title } = props.route.params;
     const [checked, setChecked] = useState(false);
+    const [createCandidate, { data, loading: mutationLoading, error: mutationError }] = useMutation(Mutation.CREATE_CANDIDATE);
+
+    const onConfirmForm = (name: string, description: string) => {
+        createCandidate({variables: {name:name, description:description, isHired:checked}})
+    };
+
     return (
-        <CreateForm
-            navigation={props.navigation}
-            title={title}
-        >
-            <CheckBox
-                title="Hired"
-                checked={checked}
-                onPress={() => setChecked(!checked)}
-                size={32}
-                containerStyle={styles.checkBoxContainer}
-            />
-        </CreateForm>
+        <React.Fragment>
+            <CreateForm
+                navigation={props.navigation}
+                title={title}
+                mutationFunc={onConfirmForm}
+            >
+                <CheckBox
+                    title="Hired"
+                    checked={checked}
+                    onPress={() => setChecked(!checked)}
+                    size={32}
+                    containerStyle={styles.checkBoxContainer}
+                />
+            </CreateForm>
+            <View style={CommonStyles.styles.center}>
+                {mutationLoading && <Text style={CommonStyles.loadingMsg}>Loading...</Text>}
+                {mutationError && <Text style={CommonStyles.errorMsg}>Error: {mutationError.message}</Text>}
+                {(data && data.createCandidate) && <Text style={CommonStyles.confirmationMsg}>Sent!</Text>}
+            </View>
+        </React.Fragment>
     )
 };
 

@@ -16,8 +16,13 @@ export const styles = StyleSheet.create({
     loadingMsg: {
         color: 'grey',
     },
+    confirmationMsg: {
+        color: 'green',
+    },
 });
 
-export const errorMsg = [styles.center, styles.wrap, styles.errorMsg];
+export const errorMsg = [styles.errorMsg];
 
-export const loadingMsg = [styles.center, styles.wrap, styles.loadingMsg];
+export const loadingMsg = [styles.loadingMsg];
+
+export const confirmationMsg = [styles.confirmationMsg];

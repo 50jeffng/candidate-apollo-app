@@ -11,6 +11,7 @@ const BackIcon = <Icon name='arrow-left' type='font-awesome'/>;
 const CreateForm = (props: {
         navigation:NavigationTypes.ScreenNavigationProp, 
         title: string,
+        mutationFunc: (name: string, description: string) => void
         children: React.ReactNode,
     }) => {
     const [nameInputText, setNameInputText] = useState('');
@@ -45,6 +46,7 @@ const CreateForm = (props: {
                     title="Confirm"
                     type="solid"
                     style={[styles.buttons, styles.confirmButton]}
+                    onPress={()=>{props.mutationFunc(nameInputText, descriptionInputText)}}
                 />
             </View>
             

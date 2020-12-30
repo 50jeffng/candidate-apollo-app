@@ -23,3 +23,27 @@ export const SKILLS = gql`
         }
     }
 `;
+
+export const CANDIDATE = gql`
+    query Candidate($id: ID!) {
+        candidate (id: $id){
+            id,
+            name,
+            description,
+            skills{
+                name    
+            },
+        }
+    }
+`;
+
+export const SKILL = gql`
+    query Skill ($id: ID!) {
+        skill (id: $id){
+            id,
+            name,
+            description,
+            type,
+        }
+    }
+`;
