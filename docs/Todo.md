@@ -7,3 +7,4 @@
 * Add skills to candidate: Probably using an Input component with filtering & searching, suggesting Skills in the database as you type
 * Overview page: That states number of models, how many Candidates are not hired etc.
 * Settings page: To configure dark mode and some preference
+* Change Skill's home page tiles picture from placeholder to show related skill's picture (probably need to store images in database, but that's for another day)
