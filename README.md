@@ -17,6 +17,10 @@ candidate-apollo-app requires [Node.js] and a mobile phone or emulator (preferab
 Run `start_project.bat` if you're using Windows, or open your favorite Terminal and run these commands. (every terminal is starting from root directory!)
 > Before running `start_project.bat` be sure to create `mongodb_path.txt` that contains the directory of your MongoDB database in the first line
 
+> Also, before running anything add your own environment variable file (`.env`) in both `./client` & `./server`, see `.env.example` for reference
+
+> Also also, for Skill's page tiles, add your own `tileplaceholder.jpg` at `./client/img/` (temporary solution)
+
 Start up MongoDB:
 ```sh
 $ mongod --dbpath="path"
