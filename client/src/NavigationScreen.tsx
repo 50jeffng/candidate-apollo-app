@@ -4,6 +4,7 @@ import {Icon} from 'react-native-elements'
 import {StyleSheet, Text, View} from 'react-native'
 import CandidatesHome from './CandidatesHome';
 import SkillsHome from './SkillsHome';
+import About from './About';
 import * as Colors from './colors';
 import * as NavigationTypes from './navigationTypes'
 
@@ -24,13 +25,13 @@ const NavigationScreen = (props: {route: NavigationTypes.HomeScreenRouteProp, na
   ]);
 
   // Navigation Scenes
-  const HomeRoute = () => <Text>Music</Text>;
+  const HomeRoute = () => <Text>Imagine this is a neat home page with cool features! :)</Text>;
 
   const CandidatesRoute = () => <CandidatesHome route={props.route} navigation={props.navigation}/>;
 
   const SkillsRoute = () => <SkillsHome route={props.route} navigation={props.navigation}/>;
 
-  const AboutRoute = () => <Text>test</Text>;
+  const AboutRoute = () => <About/>;
 
   const renderScene = BottomNavigation.SceneMap({
     home: HomeRoute,
